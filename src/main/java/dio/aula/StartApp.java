@@ -11,7 +11,7 @@ import dio.aula.repository.UserRepository;
 public class StartApp implements CommandLineRunner {
 
     @Autowired
-    UserRepository repository;
+    private UserRepository repository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -24,8 +24,13 @@ public class StartApp implements CommandLineRunner {
 
         repository.save(user);
 
-        for (User usr : repository.findAll()) {
-            System.out.println(usr);
+        // for (User usr : repository.findAll()) {
+        // System.out.println(usr);
+        // }
+
+        var users = repository.findByNameContaining("fabio");
+        for (User u : users) {
+            System.out.println(u);
         }
     }
 
